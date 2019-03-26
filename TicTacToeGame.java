@@ -5,6 +5,7 @@ public class TicTacToeGame {
 	private boolean start;// if true, when using bot, this will determine if the human or bot starts
 	private int[][] tic = new int [3][3];
 	private String[][] tac = new String [3][3];
+	
 
 	TicTacToeGame(){
 		turn = true;
@@ -19,6 +20,26 @@ public class TicTacToeGame {
 		}
 		return false;
 	}
+
+	public static boolean isWon(int[][] tic) {
+		for(int y = 0; y<3; y++) {//check rows
+			if(Math.abs(tic[0][y]+tic[1][y]+tic[2][y])==3) {
+				return true;
+			}
+		}
+		for(int x = 0; x<3; x++) {//check columns
+			if(Math.abs(tic[x][0]+tic[x][1]+tic[x][2])==3) {
+				return true;
+			}
+		}
+		if(Math.abs(tic[0][0]+tic[1][1]+tic[2][2])==3) {
+			return true;
+		}
+
+		return false;
+	}
+
+
 	public void place(int z) {//returns false if move can not be completed. In the future create a method that checks if valid before placing anything
 		int toe = 1;
 		if(this.isValid(z)) {

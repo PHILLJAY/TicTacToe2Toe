@@ -1,6 +1,7 @@
 
 public class TicTacToeGame {
-	private boolean turn;//If this = true then x plays, if false 0 plays
+	private boolean turn;//If this = true then p1 plays, if false p2 plays
+	private boolean xo; // if true, x goes, if false, o goes
 	private boolean pvp;// If this = true then its p1 vs p2, if false it is human vs bot
 	private boolean start;// if true, when using bot, this will determine if the human or bot starts
 	private int[][] tic = new int [3][3];
@@ -9,7 +10,17 @@ public class TicTacToeGame {
 
 	TicTacToeGame(){
 		turn = true;
+		pvp = true;
+		xo = true;
+		
 	}//TODO Add a .isvalid test
+	public boolean isPvp(){
+		return pvp;
+	}
+	public boolean isXO(){
+		return xo;
+	}
+	
 	public boolean isValid(int z) {
 		double d = z;
 		if(z<1||z>9) {
@@ -20,8 +31,29 @@ public class TicTacToeGame {
 		}
 		return false;
 	}
-
-	public static boolean isWon(int[][] tic) {
+	public void turnSwitch(){
+		if (turn){
+			turn = false;
+			
+		}else{
+			turn = true;
+		}
+	}
+	public boolean whatTurn(){
+		if (turn){
+			System.out.println("It is player 1s turn");
+			return true;
+		}else{
+			if(pvp){
+				System.out.println("It is player 2s turn");
+				return false;
+			}else{
+				System.out.println("it is robots turn");
+				return false;
+			}
+		}
+	}
+	public boolean isWon() {
 		for(int y = 0; y<3; y++) {//check rows
 			if(Math.abs(tic[0][y]+tic[1][y]+tic[2][y])==3) {
 				return true;
@@ -33,6 +65,9 @@ public class TicTacToeGame {
 			}
 		}
 		if(Math.abs(tic[0][0]+tic[1][1]+tic[2][2])==3) {
+			return true;
+		}
+		if(Math.abs(tic[0][2]+tic[1][1]+tic[2][0])==3){
 			return true;
 		}
 
@@ -75,10 +110,10 @@ public class TicTacToeGame {
 			for(int y = 0; y<3; y++ ) {
 				if(tic[x][y] == 0) {
 				}
-				if(tic[x][y] == 1) {
+				if(tic[x][y] == -1) {
 					tac[x][y] = "O";
 				}
-				if(tic[x][y] == 2) {
+				if(tic[x][y] == 1) {
 					tac[x][y] = "x";
 				}
 			}

@@ -1,50 +1,43 @@
+import java.util.Scanner;
 
 public class tictactest {
 
 	public static void main(String args[] ) {
 		TicTacToeGame test = new TicTacToeGame();
-		test.display();
-		test.multiplayer(true);
-		test.multiplayer(false);
-		test.update();
-		test.display();
+		Scanner in = new Scanner(System.in);
+		int pos = 0;
+		System.out.println("hello, welcome to my game of tic tac toe");
+		System.out.println("Would you like to play with a computer? (1/0)");
+		if(in.nextInt()==0) {
+			test.pvp(true);
+		}
+		for (int i = 0; i < 50; ++i) System.out.println();
+		System.out.println("Alright, setting up board");
 		test.set();
-		test.place(3);
-		test.update();
 		test.display();
-		if(test.isValid(3)) {
-			System.out.println("Valid move bro");
-		}else {
-			System.out.println("inValid move bro");
-		}
-		System.out.println();
-
-		
-/*		String temp = "x";
-		int[][] tic = new int [3][3];
-		String[][] tac = new String [3][3];
-		for(int x = 0; x<3; x++) {
-			for(int y = 0; y<3; y++ ) {
-				tac[x][y] = Integer.toString(y*3 + x +1);
+		System.out.println("Alright just type a number in to place there");
+		for(int z = 0; z<9; z++) {
+			System.out.println("Pop a new number in babeee");
+			test.whatTurn();
+			pos = in.nextInt();
+			if(test.isValid(pos)) {
+				test.place(pos);
+				test.turnSwitch();
+				test.xoSwitch();
 			}
-		}
-				for(int x = 0; x<3; x++) {
-			for(int y = 0; y<3; y++ ) {
-				if(tic[x][y] == 0) {
-					tac[x][y] = "x";
-				}
-				if(tic[x][y] == 1) {
-					tac[x][y] = "O";
-				}
-				if(tic[x][y] == 2) {
-				}
+			if(test.isWon()) {
+				break;
 			}
+			for (int i = 0; i < 50; ++i) System.out.println();
+			if(!test.isValid(pos)){
+				System.out.println("Invalid move");
+			}
+			test.display();
 		}
-	*/	 
-		//		System.out.println("  " + tac[0][0] +" | " + tac[1][0] + " | " + tac[2][0] + "  ");
-		//		System.out.println(" ---|---|--- ");
-		//		System.out.println("  " + tac[0][1] +" | " + tac[1][1] + " | " + tac[2][1] + "  ");
-		//		System.out.println(" ---|---|--- ");
-		//		System.out.println("  " + tac[0][2] +" | " + tac[1][2] + " | " + tac[2][2] + "  ");
+		System.out.println("ALRIGHT THE GAMES DONE");
+		if(test.isWon()) {
+			System.out.println("YOU WIN");
+		}else
+			System.out.println("TIE TIE TIE");
 	}
 }

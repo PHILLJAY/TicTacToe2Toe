@@ -6,13 +6,13 @@ public class TicTacToeGame {
 	private boolean start;// if true, when using bot, this will determine if the human or bot starts
 	private int[][] tic = new int [3][3];
 	private String[][] tac = new String [3][3];
-	
+
 
 	TicTacToeGame(){
 		turn = true;
 		pvp = true;
 		xo = true;
-		
+
 	}//TODO Add a .isvalid test
 	public boolean isPvp(){
 		return pvp;
@@ -20,23 +20,30 @@ public class TicTacToeGame {
 	public boolean isXO(){
 		return xo;
 	}
-	
+
 	public boolean isValid(int z) {
 		double d = z;
 		if(z<1||z>9) {
 			return false;
 		}
-		if(tic[(z-1)%3][(z-1)/3]==0) {;
-		return true;
+		if(tic[(z-1)%3][(z-1)/3]==0) {
+			return true;
 		}
 		return false;
 	}
 	public void turnSwitch(){
 		if (turn){
 			turn = false;
-			
+
 		}else{
 			turn = true;
+		}
+	}
+	public void xoSwitch() {
+		if(xo) {
+			xo = false;
+		}else {
+			xo = true;
 		}
 	}
 	public boolean whatTurn(){
@@ -73,18 +80,32 @@ public class TicTacToeGame {
 
 		return false;
 	}
-
-
 	public void place(int z) {//returns false if move can not be completed. In the future create a method that checks if valid before placing anything
-		int toe = 1;
+		int toe = 0;
+		if(xo) {
+			toe = 1;
+		}else {
+			toe = 	-1;	
+		}
 		if(this.isValid(z)) {
 			tic[(z-1)%3][(z-1)/3]=toe;
 		}
 
 	}
-	
-
 	public void display() {
+		for(int x = 0; x<3; x++) {
+			for(int y = 0; y<3; y++ ) {
+				if(tic[x][y] == 0) {
+				}
+				if(tic[x][y] == -1) {
+					tac[x][y] = "O";
+				}
+				if(tic[x][y] == 1) {
+					tac[x][y] = "x";
+				}
+			}
+		}
+
 		System.out.println("  " + tac[0][0] +" | " + tac[1][0] + " | " + tac[2][0] + "  ");
 		System.out.println(" ---|---|--- ");
 		System.out.println("  " + tac[0][1] +" | " + tac[1][1] + " | " + tac[2][1] + "  ");
@@ -98,7 +119,7 @@ public class TicTacToeGame {
 			}
 		}
 	}
-	public void multiplayer (boolean blegh) {
+	public void pvp (boolean blegh) {
 		pvp = false;
 		if(blegh) {
 			pvp = true;

@@ -20,42 +20,45 @@ public class TicTacToeGame {
 	public boolean isXO(){
 		return xo;
 	}
+	public void cpuPlace(){
+
+	}
 
 	public boolean isValid(int z) {
 		double d = z;
 		if(z<1||z>9) {
 			return false;
 		}
-		if(tic[(z-1)%3][(z-1)/3]==0) {
-			return true;
+		if(tic[(z-1)%3][(z-1)/3]==0) {;
+		return true;
 		}
 		return false;
 	}
+	public void turnSwitchOnly(){
+		turn =! turn;
+	}
 	public void turnSwitch(){
-		if (turn){
-			turn = false;
-
-		}else{
-			turn = true;
-		}
+		turn =! turn;
+		xo =! xo;
 	}
-	public void xoSwitch() {
-		if(xo) {
-			xo = false;
-		}else {
-			xo = true;
-		}
-	}
-	public boolean whatTurn(){
+	public void isTurn(){
 		if (turn){
 			System.out.println("It is player 1s turn");
-			return true;
 		}else{
 			if(pvp){
 				System.out.println("It is player 2s turn");
-				return false;
 			}else{
 				System.out.println("it is robots turn");
+			}
+		}		
+	}
+	public boolean whatTurn(){
+		if (turn){
+			return true;
+		}else{
+			if(pvp){
+				return false;
+			}else{
 				return false;
 			}
 		}
@@ -80,12 +83,12 @@ public class TicTacToeGame {
 
 		return false;
 	}
+
+
 	public void place(int z) {//returns false if move can not be completed. In the future create a method that checks if valid before placing anything
-		int toe = 0;
-		if(xo) {
+		int toe = -1;
+		if(xo){
 			toe = 1;
-		}else {
-			toe = 	-1;	
 		}
 		if(this.isValid(z)) {
 			tic[(z-1)%3][(z-1)/3]=toe;
@@ -105,7 +108,6 @@ public class TicTacToeGame {
 				}
 			}
 		}
-
 		System.out.println("  " + tac[0][0] +" | " + tac[1][0] + " | " + tac[2][0] + "  ");
 		System.out.println(" ---|---|--- ");
 		System.out.println("  " + tac[0][1] +" | " + tac[1][1] + " | " + tac[2][1] + "  ");
@@ -119,7 +121,7 @@ public class TicTacToeGame {
 			}
 		}
 	}
-	public void pvp (boolean blegh) {
+	public void multiplayer (boolean blegh) {
 		pvp = false;
 		if(blegh) {
 			pvp = true;

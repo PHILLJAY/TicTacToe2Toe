@@ -1,4 +1,3 @@
-
 public class TicTacToeGame {
 	private boolean turn;//If this = true then p1 plays, if false p2 plays
 	private boolean xo; // if true, x goes, if false, o goes
@@ -21,9 +20,12 @@ public class TicTacToeGame {
 		return xo;
 	}
 	public void cpuPlace(){
-
+		int z = -4;
+		while(!this.isValid(z)) {
+			z =  (int) Math.round((Math.random()*(9-1)+1));
+		}
+		this.place(z);
 	}
-
 	public boolean isValid(int z) {
 		double d = z;
 		if(z<1||z>9) {

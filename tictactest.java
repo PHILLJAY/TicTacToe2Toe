@@ -12,7 +12,6 @@ public class tictactest {
 			test.multiplayer(true);
 		}else if(a==0){
 			test.multiplayer(false);
-			System.err.println("ERROR: No pve yet implimented");
 		}else{
 			System.out.println("Alright thanks for picking a number");
 			System.out.println("Ill just set you up against a human, you have friends right?");
@@ -21,7 +20,6 @@ public class tictactest {
 		int move = 0;
 		System.out.println("Setting up board");
 		test.set();
-		test.display();
 		System.out.println("looking good :)");
 		for(int z = 0; z<9; z++){
 			test.display();
@@ -52,10 +50,15 @@ public class tictactest {
 				}else{
 					System.out.println("a l r i g h t, i m m a  g o  h e r e");
 					test.cpuPlace();
+					test.turnSwitch();
 				}
 
 			}
 		}
+		if(test.isWon()) {
 		System.out.println("someone won");
+		}else {
+			System.out.println("no one won");
+		}
 	}
 }

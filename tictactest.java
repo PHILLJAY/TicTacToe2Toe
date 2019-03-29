@@ -1,3 +1,7 @@
+//com truise - Iteration
+//Of your fake dimention:1
+//Ephemeron : 2
+//
 import java.util.Scanner;
 
 public class tictactest {
@@ -21,9 +25,9 @@ public class tictactest {
 		System.out.println("Setting up board");
 		test.set();
 		System.out.println("looking good :)");
-		for(int z = 0; z<9; z++){
+		while(true){
 			test.display();
-			if (test.isWon()){
+			if (test.isWon()||test.isDone()){
 				break;
 			}
 			test.isTurn();
@@ -56,7 +60,16 @@ public class tictactest {
 			}
 		}
 		if(test.isWon()) {
-		System.out.println("someone won");
+			if(!test.whatTurn()){
+				System.out.println("Player 1 won");
+			}else{
+				if(test.isPvp()){
+					System.out.println("Player 2 won");
+				}else{
+					System.out.println("bot won, humans S U C K");
+				}
+			}
+			System.out.println("someone won");
 		}else {
 			System.out.println("no one won");
 		}

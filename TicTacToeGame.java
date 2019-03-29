@@ -21,6 +21,62 @@ public class TicTacToeGame {
 	}
 	public void cpuPlace(){
 		int z = -4;
+
+		for(int y = 0; y<3; y++) {//check rows
+			if((tic[0][y]+tic[1][y]+tic[2][y])==-2) {
+				int p;
+				for(int i = 0; i<3; i++){
+					p = i+1+(y*3);
+					if(this.isValid(p)){
+						this.place(p);
+						return;
+					}
+				}
+			}
+		}
+		for(int x = 0; x<3; x++) {//check columns
+			if((tic[x][0]+tic[x][1]+tic[x][2])==-2){
+				int p;
+				for(int i = 0; i<3; i++){
+					p = x+1+(i*3);
+					if(this.isValid(p)){
+						this.place(p);
+						return;
+					}
+				}
+			}
+		}
+		if((tic[0][0]+tic[1][1]+tic[2][2])==-2) {
+			int p;
+			for(int i = 0; i<3; i++){
+				p = i+1+(i*3);
+				System.err.println(p);
+				if(this.isValid(p)){
+					this.place(p);
+					return;
+				}else{
+					System.err.println(p + " didnt work");
+				}
+			}
+		}
+		if((tic[0][2]+tic[1][1]+tic[2][0])==-2){
+
+			int p;
+			for(int i = 0; i<3; i++){
+				p = i+1+((2-i)*3);
+				System.err.println(p);
+				if(this.isValid(p)){
+					this.place(p);
+					return;
+				}else{
+					System.err.println(p + " didnt work");
+				}
+			}
+		
+		}
+
+
+
 		while(!this.isValid(z)) {
 			z =  (int) Math.round((Math.random()*(9-1)+1));
 		}
@@ -86,7 +142,16 @@ public class TicTacToeGame {
 		return false;
 	}
 
-
+public boolean isDone(){
+	for(int x = 0; x<3; x++) {
+		for(int y = 0; y<3; y++ ) {
+			if(tic[x][y] == 0){
+				return false;
+			}
+		}
+	}
+	return true;
+}
 	public void place(int z) {//returns false if move can not be completed. In the future create a method that checks if valid before placing anything
 		int toe = -1;
 		if(xo){
@@ -95,7 +160,6 @@ public class TicTacToeGame {
 		if(this.isValid(z)) {
 			tic[(z-1)%3][(z-1)/3]=toe;
 		}
-
 	}
 	public void display() {
 		for(int x = 0; x<3; x++) {

@@ -1,13 +1,13 @@
-//com truise - Iteration
-//Of your fake dimention:1
-//Ephemeron : 2
-//
+
 import java.util.Scanner;
 
 public class tictactest {
 
 	public static void main(String args[] ) {
+		
 		TicTacToeGame test = new TicTacToeGame();
+		test.play();
+		/*
 		Scanner in =  new Scanner(System.in);
 		System.out.println("welcome to tictactoe!");
 		System.out.println("would you like pvp to be enabled? 1/0");
@@ -73,5 +73,5 @@ public class tictactest {
 		}else {
 			System.out.println("no one won");
 		}
-	}
+	*/}
 }
